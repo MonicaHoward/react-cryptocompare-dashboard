@@ -1,0 +1,12 @@
+body {
+    background: linear-gradient(
+            to bottom,
+            rgba(197, 121, 109, .7),
+            rgba(219, 230, 246, .7)
+    ),url("https://images.pexels.com/photos/134074/pexels-photo-134074.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    width: 100vw;
+    height: 100vh;
+    color: #11B5E4;
+    font-family: Sans-Serif;
+    font-size: 2em;
+}
