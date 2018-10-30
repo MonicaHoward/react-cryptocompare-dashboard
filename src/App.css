@@ -1,9 +1,11 @@
 body {
     background: linear-gradient(
             to bottom,
-            rgba(197, 121, 109, .7),
-            rgba(219, 230, 246, .6)
-    ),url("https://images.pexels.com/photos/34941/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+            rgba(107, 82, 103, .98),
+            rgba(126, 162, 170, .98),
+            rgba(255, 255, 255, .8)
+    ),url("https://images.pexels.com/photos/161043/stained-glass-colorful-glass-stained-glass-window-161043.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"),
+            no-repeat;
     width: 100vw;
     height: 100vh;
     color: #FFF;

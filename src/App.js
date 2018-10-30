@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import styled, {css} from 'styled-components';
 import MenuBar from './MenuBar';
+import CoinList from './CoinList';
 const cc = require('cryptocompare');
 
 const AppLayout = styled.div`
@@ -18,7 +19,7 @@ const checkFirstVisit = () => {
   if(!cryptoCompareData){
     return {
       firstVisit: true,
-        page: 'settings'
+      page: 'settigns'
     }
   }
   return{};
@@ -26,7 +27,7 @@ const checkFirstVisit = () => {
 
 class App extends Component {
     state = {
-        page: 'dashboard',
+        page: 'settings',
         ...checkFirstVisit()
     };
     componentDidMount = () => {
@@ -35,7 +36,7 @@ class App extends Component {
     fetchCoins = async () => {
         let coinList = (await cc.coinList()).Data;
         this.setState({ coinList });
-    }
+    };
     displayingDashboard = () => this.state.page ==='dashboard';
     displayingSettings = () => this.state.page ==='settings';
     firstVisitMessage = () => {
@@ -61,6 +62,9 @@ class App extends Component {
                 <div onClick={this.confirmFavorites}>
                     Confirm Favorites
                 </div>
+                <div>
+                    {CoinList.call(this)}
+                </div>
             </div>
         )
     };
@@ -77,9 +81,10 @@ class App extends Component {
         return (
             <AppLayout>
                 {MenuBar.call(this)}
-                    {this.loadingContent() || <Content>
-                        {this.displayingSettings() && this.settingsContent()}
-                    </Content>}
+                    {this.loadingContent() ||
+                        <Content>
+                            {this.displayingSettings() && this.settingsContent()}
+                        </Content>}
             </AppLayout>
         );
     }
