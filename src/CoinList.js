@@ -29,22 +29,22 @@ const CoinHeader = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
    
-`
+`;
 const CoinSymbol = styled.div`
     justify-self: right;
-`
+`;
 
 export default function(favorites=false) {
     let coinKeys = favorites ? this.state.favorites : Object.keys(this.state.coinList).slice(0, 20);
     return(
         <CoinGrid>
-            {coinKeys.map(coin =>
-                <CoinTile favorite={favorites}>
+            {coinKeys.map(coinKey =>
+                <CoinTile favorite={favorites} onClick={favorites ? () =>{this.removeCoinFromFavorites(coinKey)} : () =>{this.addCoinToFavorites(coinKey)}}>
                     <CoinHeader>
-                        <div>{this.state.coinList[coin].CoinName}</div>
-                        <CoinSymbol>{this.state.coinList[coin].Symbol}</CoinSymbol>
+                        <div>{this.state.coinList[coinKey].CoinName}</div>
+                        <CoinSymbol>{this.state.coinList[coinKey].Symbol}</CoinSymbol>
                     </CoinHeader>
-                    <img style={{height: '50px'}} src={`http://cryptocompare.com/${this.state.coinList[coin].ImageUrl}`} />
+                    <img style={{height: '50px'}} src={`http://cryptocompare.com/${this.state.coinList[coinKey].ImageUrl}`} />
                 </CoinTile>
             )}
 

@@ -13,6 +13,8 @@ const Content = styled.div`
     border-radius: 2px;
     padding: 1%;
 `;
+const MAX_FAVORITES = 10;
+
 
 const checkFirstVisit = () => {
   let cryptoCompareData = localStorage.getItem('cryptoCompare');
@@ -77,7 +79,17 @@ class App extends Component {
                 <div>Loading Coins. . .</div>
             )
         }
-    }
+    };
+    addCoinToFavorites = (key) => {
+        let favorites = [...this.state.favorites];
+        if (favorites.length < MAX_FAVORITES) {
+            favorites.push(key);
+            this.setState({favorites})
+        }
+    };
+    removeCoinFromFavorites = (key) => {
+
+    };
 
     render() {
         return (
