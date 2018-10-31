@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import {subtleBoxShadow} from "./Style";
+import styled, {css} from 'styled-components';
+import {greenBoxShadow, redBoxShadow, subtleBoxShadow} from "./Style";
 
 const CoinGrid = styled.div`
     display: grid;
@@ -15,9 +15,16 @@ const CoinTile = styled.div`
     padding: 10px;
     &:hover {
         cursor: pointer;
-        color: purple;
-    }
+        ${greenBoxShadow}
+     }
+    ${props => props.favorite && css`
+        &:hover {
+            cursor: pointer;
+            ${redBoxShadow}
+        }
+    `}
 `;
+
 const CoinHeader = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -27,11 +34,12 @@ const CoinSymbol = styled.div`
     justify-self: right;
 `
 
-export default function () {
+export default function(favorites=false) {
+    let coinKeys = favorites ? this.state.favorites : Object.keys(this.state.coinList).slice(0, 20);
     return(
         <CoinGrid>
-            {Object.keys(this.state.coinList).slice(0, 100).map(coin =>
-                <CoinTile>
+            {coinKeys.map(coin =>
+                <CoinTile favorite={favorites}>
                     <CoinHeader>
                         <div>{this.state.coinList[coin].CoinName}</div>
                         <CoinSymbol>{this.state.coinList[coin].Symbol}</CoinSymbol>
