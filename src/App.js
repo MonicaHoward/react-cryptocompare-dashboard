@@ -31,7 +31,7 @@ const checkFirstVisit = () => {
 class App extends Component {
     state = {
         page: 'settings',
-        favorites: ['ETH', 'BTC', 'XMR', 'DOGE', 'EOS'],
+        favorites: ['ETH', 'BTC', 'LTC', 'XRP', 'EOS'],
         ...checkFirstVisit()
     };
     componentDidMount = () => {
@@ -52,11 +52,14 @@ class App extends Component {
     };
 
     confirmFavorites = () => {
-        localStorage.setItem('cryptoCompare', 'test');
         this.setState({
             firstVisit: false,
             page: 'settings'
-        })
+        });
+        localStorage.setItem('cryptoCompare', JSON.stringify({
+            favorites: this.state.favorites
+        }));
+
     };
 
     settingsContent = () => {
