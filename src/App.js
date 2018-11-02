@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import styled, {css} from 'styled-components';
+import {subtleBoxShadow} from "./Style";
 import MenuBar from './MenuBar';
 import CoinList from './CoinList';
+import Search from './Search';
 import _ from 'lodash';
 const cc = require('cryptocompare');
 
@@ -27,6 +29,23 @@ const checkFirstVisit = () => {
   }
   return{};
 };
+
+const ConfirmButton = styled.div`
+    border: 1px solid;
+    margin: 2%;
+    height: 25px;
+    width: 10%;
+    ${subtleBoxShadow}
+    background: linear-gradient(to right, rgba(0, 0, 0, .5), rgba(255, 255, 255, .2));
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    padding: 1%;
+    justify-self: center;
+    &:hover {
+        cursor: pointer;
+        border:2px solid black;
+    }
+`
 
 class App extends Component {
     state = {
@@ -66,11 +85,13 @@ class App extends Component {
         return(
             <div>
                 {this.firstVisitMessage()}
-                <div onClick={this.confirmFavorites}>
-                    Confirm Favorites
-                </div>
+                {Search.call(this)}
                 <div>
                     {CoinList.call(this, true)}
+                    <ConfirmButton onClick={this.confirmFavorites}>
+                        Confirm Favorites
+                    </ConfirmButton>
+                    <hr/>
                     {CoinList.call(this)}
                 </div>
             </div>

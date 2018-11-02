@@ -12,7 +12,7 @@ const CoinTile = styled.div`
     ${subtleBoxShadow}
     background: rgba(0, 0, 0, .3);
     border: 1px solid rgba(0, 0, 0, 0.3);
-    padding: 10px;
+    padding: 5%;
     &:hover {
         cursor: pointer;
         ${greenBoxShadow}
